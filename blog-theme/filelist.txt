@@ -1,0 +1,18 @@
+    * Header Template = header.php            CONTAINS <HTML><HEAD><BODY>
+    * Main Template = index.php
+    * Footer Template = footer.php            CONTAINS </BODY></HTML>
+
+    * 404 Template = 404.php
+    * Archive Template = archive.php
+    * Page Template = archives.php
+    * Comments Template = comments.php
+    * Links = links.php
+    * Page Template = page.php
+    * Popup Comments Template = comments-popup.php
+    * Post Template = single.php
+    * Search Form = searchform.php
+    * Search Template = search.php
+    * Sidebar Template = sidebar.php
+    * Stylesheet = style.css 
+
+
