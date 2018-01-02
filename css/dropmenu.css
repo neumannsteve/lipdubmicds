@@ -1,6 +1,6 @@
 .dropmenu {
   position: relative;
-  background: #000;
+  background: #FFF;
   float: left;
   margin: 0px; 
   padding: 0px;
@@ -18,7 +18,7 @@
   font-weight: normal;
 }
 .dropmenu li span {
-  background-color: #000;
+  background-color: #FFF;
   display:block;
   height:5px;
   position:absolute;
@@ -27,15 +27,15 @@
   width:5px;
 }
 .dropmenu li a:hover span{
-  background-color:#000;
+  background-color:#FFF;
 }
 .dropmenu li a, .dropmenu li div{
   width: 90px;
   padding: 2px 6px;
   text-align: center;
   text-decoration: none;
-  background-color:#000;
-  color: #FFF;
+  background-color:#FFF;
+  color: #000;
 }
 .dropmenu li.narrow a, .dropmenu li.narrow div{
   width: 70px !important;
@@ -47,7 +47,7 @@
   width: 150px !important;
 }
 .dropmenu li a:hover{
-  background: #000;	
+  background: #FFF;	
 }
 
 /* Submenu */
@@ -58,7 +58,7 @@
   top: 100%;
   padding: 0px;
   margin: 0px;
-  background: #EEE;
+  background: #333;
   border-bottom:1px solid #796D6A;
 }
 .dropmenu.css-only li:hover > ul, .dropmenu.css-only li:hover > div{
@@ -88,7 +88,7 @@
   border-left:1px solid #796D6A;
 }
 .dropmenu li ul li a:hover{
-  background-color: #000;
+  background-color: #FFF;
   font-weight: bold;
 }
 .dropmenu li ul li ul, .dropmenu li ul li > div {
