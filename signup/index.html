@@ -1,0 +1,46 @@
+<!-- pagestyle: start -->
+label { width: 250px; }
+ul { list-style: none; }
+input[type=text] { width: 400px; }
+<!-- pagestyle: end -->
+<h1>Signup for Leadership Team</h1>
+
+<p>To sign up for a chance at being on the leadership team, please fill out the
+following form.  A single Assistant Director will be chosen, and in addition
+two pairs of co-leaders from each class will be randomly selected to coordinate
+a portion of the full lip dub video (for a total of 16 co-leaders of the 8
+sections).</p>
+
+<form method="/cgi-bin/signup.pl" action="post">
+  <input type="hidden" name="phase" value="leadership">
+  <ul>
+  <li>
+    <label for="name">Name</label>
+    <input type="text" name="name" value="">
+  </li>
+  <li>
+    <label for="email">Email</label>
+    <input type="text" name="email" value="">
+  </li>
+  <li>
+    <label for="phone">Phone Number</label>
+    <input type="text" name="phone" value="">
+  </li>
+  <li>
+    <label for="class">Class</label>
+    <select name="class">
+    <option value=""></option>
+    <option value="2018">Class of 2018</option>
+    <option value="2019">Class of 2019</option>
+    <option value="2020">Class of 2020</option>
+    <option value="2021">Class of 2021</option>
+    </select>
+  </li>
+  <li>
+    <label for="assistant">
+      <input type="checkbox" name="assistant"> Interested in being Assistant Director
+    </label>
+  </li>
+  </ul>
+  <p><input type="submit" name="submit" value=" Sign Up! "></p> 
+</form>
