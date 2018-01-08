@@ -8,12 +8,7 @@
       <small><?php the_time('F jS, Y') ?> <!-- by <?php the_author() ?> --></small>
       <div class="entry">
         <?php the_content('Read the rest of this entry &raquo;'); ?>
-        <img src="/images/blogcard-<?php echo strtolower(the_author_meta('user_login')) ?>.jpg" width="540" height="141" alt="<?php the_author() ?>" border="0">
       </div>
-      <p class="postmetadata">
-        <strong>&middot;</strong> Posted in <?php the_category(', ') ?>
-        <strong>&middot;</strong> <?php edit_post_link('Edit','','&nbsp;<strong>&middot;</strong>'); ?>
-      </p>
     </div>
   <?php endwhile; ?>
   <div class="navigation">
