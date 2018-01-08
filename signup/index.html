@@ -1,9 +1,13 @@
 <!-- pagestyle: start -->
-label { width: 250px; }
+label { display: block; font-weight: bold; color: #309; font-variant: small-caps; }
 ul { list-style: none; }
-input[type=text] { width: 400px; }
+li { margin-bottom: 20px; }
+input[type=text] { width: 100%; }
+input[type=submit] { width: 200px; }
 <!-- pagestyle: end -->
 <h1>Signup for Leadership Team</h1>
+
+<div style="width: 610px">
 
 <p>To sign up for a chance at being on the leadership team, please fill out the
 following form.  A single Assistant Director will be chosen, and, in addition,
@@ -11,7 +15,7 @@ two pairs of co-leaders from each class will be randomly selected to coordinate
 a portion of the full lip dub video (for a total of 16 co-leaders of the 8
 sections plus the Assistant Director).</p>
 
-<form method="/cgi-bin/signup.pl" action="post">
+<form action="/cgi-bin/signup.py" method="post">
   <input type="hidden" name="phase" value="leadership">
   <ul>
   <li>
@@ -42,5 +46,7 @@ sections plus the Assistant Director).</p>
     </label>
   </li>
   </ul>
-  <p><input type="submit" name="submit" value=" Sign Up! "></p> 
+  <div style="display: block; width: 200px; margin: 1em auto"><input type="submit" name="submit" value=" Sign Up! "></div> 
 </form>
+
+</div>
