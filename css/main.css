@@ -1,6 +1,9 @@
 body {
   background: #FFF;
   color: #333;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 div#logo {
   position: absolute;
@@ -30,7 +33,7 @@ div#navbar li a:hover {
 }
 div#mainsection {
   position: absolute;
-  top: 45px;
+  top: 66px;
   width: 100%;
 }
 div.textblock {
@@ -39,4 +42,8 @@ div.textblock {
 p {
   font-size: 24pt;  
   color: #666;
+}
+div.section_bar {
+  width: 100%;
+  height: 30px;
 }
