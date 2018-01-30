@@ -17,7 +17,7 @@ div#main-banner {
 }
 div#navbar {
   position: absolute;
-  top: 15px;
+  top: 25px;
   left: 50%;
   margin-left: -300px;
   width: 600px;
