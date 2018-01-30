@@ -60,9 +60,10 @@ if error is None:
     <tr><th>Email</th><td>{email}</td></tr>
     <tr><th>Phone</th><td>{phone}</td></tr>
     <tr><th>Class</th><td>{class}</td></tr>
-    <tr><th>Assistant?</th><td>{assistant}</td></tr>
-    </table>
     '''.format(**info)
+    if phase == 'leadership': 
+        text += '<tr><th>Assistant?</th><td>{assistant}</td></tr>'.format(**info)
+    text += '</table>'
 else:
     text = error
 

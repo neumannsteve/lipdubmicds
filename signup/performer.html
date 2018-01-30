@@ -1,0 +1,36 @@
+<h1>Signup for Being a Performer</h1>
+
+<div style="width: 610px">
+
+<p>To sign up to be a featured performer, please fill out the following form.
+The songs will be chosen later, so there's no telling what you'll have to sing
+along to.  That's part of the fun!</p>
+
+<form action="/cgi-bin/signup.py" method="post">
+  <input type="hidden" name="phase" value="performer">
+  <ul>
+  <li>
+    <label for="name">Name</label>
+    <input type="text" name="name" value="">
+  </li>
+  <li>
+    <label for="email">Email</label>
+    <input type="text" name="email" value="">
+  </li>
+  <li>
+    <label for="phone">Phone Number</label>
+    <input type="text" name="phone" value="">
+  </li>
+  <li>
+        <input type="radio" name="class" value="2018"> Class of 2018
+    <br><input type="radio" name="class" value="2019"> Class of 2019
+    <br><input type="radio" name="class" value="2020"> Class of 2020
+    <br><input type="radio" name="class" value="2021"> Class of 2021
+    <br><input type="radio" name="class" value="other"> Other
+    </select>
+  </li>
+  </ul>
+  <div style="display: block; width: 200px; margin: 1em auto"><input type="submit" name="submit" value=" Sign Up! "></div> 
+</form>
+
+</div>

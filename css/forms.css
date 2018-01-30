@@ -1,0 +1,22 @@
+label {
+  display: block;
+  font-weight: bold;
+  color: #309;
+  font-variant: small-caps;
+  font-size: 24pt;
+}
+ul {
+  list-style: none;
+}
+li {
+  margin-bottom: 20px; font-size: 24pt;
+}
+input {
+  border-image-width: 0;
+}
+input[type=text] {
+  width: 100%; font-size: 24pt; padding: 5px;
+}
+input[type=submit] {
+  width: 200px;
+}

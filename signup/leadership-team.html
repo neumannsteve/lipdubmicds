@@ -1,10 +1,3 @@
-<!-- pagestyle: start -->
-label { display: block; font-weight: bold; color: #309; font-variant: small-caps; }
-ul { list-style: none; }
-li { margin-bottom: 20px; }
-input[type=text] { width: 100%; }
-input[type=submit] { width: 200px; }
-<!-- pagestyle: end -->
 <h1>Signup for Leadership Team</h1>
 
 <div style="width: 610px">
@@ -31,18 +24,16 @@ sections plus the Assistant Director).</p>
     <input type="text" name="phone" value="">
   </li>
   <li>
-    <label for="class">Class</label>
-    <select name="class">
-    <option value=""></option>
-    <option value="2018">Class of 2018</option>
-    <option value="2019">Class of 2019</option>
-    <option value="2020">Class of 2020</option>
-    <option value="2021">Class of 2021</option>
+        <input type="radio" name="class" value="2018"> Class of 2018
+    <br><input type="radio" name="class" value="2019"> Class of 2019
+    <br><input type="radio" name="class" value="2020"> Class of 2020
+    <br><input type="radio" name="class" value="2021"> Class of 2021
+    <br><input type="radio" name="class" value="other"> Other
     </select>
   </li>
   <li>
     <label for="assistant">
-      <input type="checkbox" name="assistant"> Interested in being Assistant Director
+      <input type="checkbox" name="assistant"> <span style="font-size: 16pt">Interested in being Assistant Director</span>
     </label>
   </li>
   </ul>
