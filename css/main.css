@@ -41,6 +41,7 @@ div.textblock {
 }
 p {
   font-size: 24pt;  
+  line-height: 28pt;
   color: #666;
 }
 div.section_bar {
