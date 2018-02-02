@@ -4,8 +4,10 @@ CREATE TABLE tblSignups (
         email           text,
         phone           text,
         class           text,
+        comments        text,
         created         timestamptz,
-        do_not_email    boolean not null default false
+        do_not_email    boolean not null default false,
+        assistant_director boolean not null default false
 );
 
 CREATE TABLE tblPhases (
@@ -13,6 +15,7 @@ CREATE TABLE tblPhases (
         phase       text not null
 );
 INSERT INTO tblPhases(phase) VALUES ('leadership');
+INSERT INTO tblPhases(phase) VALUES ('performer');
 
 CREATE TABLE xrefSignupsPhases (
         signup_id   integer references tblSignups(id),

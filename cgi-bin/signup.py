@@ -8,7 +8,7 @@ import subprocess
 from subprocess import PIPE, Popen
 
 # Dump errors to browser
-cgitb.enable()
+# cgitb.enable()
 
 # Create instance of FieldStorage
 form = cgi.FieldStorage()
@@ -16,9 +16,13 @@ form = cgi.FieldStorage()
 # Get data from fields
 phase = form.getvalue('phase')
 info = {}
-for field in ['name', 'email', 'phone', 'class']:
+for field in ['name', 'email', 'phone', 'class', 'comments']:
     info[field] = form.getvalue(field)
 info['assistant'] = True if form.getvalue('assistant', '') != '' else False
+
+# Write data to file (just in case)
+with open('signups.dat', 'a') as signups_file:
+    signups_file.write('{}\n'.format(info))
 
 # Connect to database
 session = subprocess.Popen(['/usr/www/bin/read_dbcfg', 'lipdubmicds'], stdout=PIPE, stderr=PIPE)
@@ -41,8 +45,8 @@ with conn:
         if row is not None:
             phase_id = row[0]
 
-        cursor.execute("INSERT INTO tblSignups (name,email,phone,class,created) VALUES (%s,%s,%s,%s,now()) RETURNING id",
-            (info['name'], info['email'], info['phone'], info['class']))
+        cursor.execute("INSERT INTO tblSignups (name,email,phone,class,comments,assistant_director,created) VALUES (%s,%s,%s,%s,%s,%s,now()) RETURNING id",
+            (info['name'], info['email'], info['phone'], info['class'], info['comments'], 'true' if info['assistant'] else 'false'))
         new_row = cursor.fetchone()
         if new_row is None:
             error = "Unable to save record to database"
@@ -51,35 +55,20 @@ with conn:
             if phase_id is not None:
                 cursor.execute("INSERT INTO xrefSignupsPhases (signup_id, phase_id, created) VALUES (%s,%s,now())", (signup_id, phase_id))
 
-# Format output
-if error is None:
-    text = '''
-    <h2>Submitted Info</h2>
-    <table>
-    <tr><th>Name</th><td>{name}</td></tr>
-    <tr><th>Email</th><td>{email}</td></tr>
-    <tr><th>Phone</th><td>{phone}</td></tr>
-    <tr><th>Class</th><td>{class}</td></tr>
-    '''.format(**info)
-    if phase == 'leadership': 
-        text += '<tr><th>Assistant?</th><td>{assistant}</td></tr>'.format(**info)
-    text += '</table>'
-else:
-    text = error
-
 # Generate output
 BASEDIR = '/usr/www/hosted/lipdubmicds'
 SUBDIR = 'signup'
 INPDIR = 'staging'
 TEMPLATE = 'signup-template.html'
 TMPNAME = next(tempfile._get_candidate_names()) + '.html'
-ofname = '{0}/{1}/{2}/{3}'.format(BASEDIR, INPDIR, SUBDIR, TMPNAME)
-with open(ofname, 'w') as ofile: ofile.write(text)
 
-args = ['/usr/www/bin/template.pl', '-B:'+BASEDIR, '-C:'+SUBDIR, '-I:'+INPDIR, '-t:'+TEMPLATE, '-f:name='+info['name'], 'thankyou.html']
+vars = []
+vars.append('name=' + info['name'])
+if error is not None: vars.append('error=true')
+
+args = ['/usr/www/bin/template.pl', '-B:'+BASEDIR, '-C:'+SUBDIR, '-I:'+INPDIR, '-t:'+TEMPLATE, '-f:'+','.join(vars), 'thankyou.html']
 session = subprocess.Popen(args, stdout=PIPE, stderr=PIPE)
 stdout, stderr = session.communicate()
-os.remove(ofname)
 
 # Print output
 print "Content-Type: text/html\r\n\r\n"
