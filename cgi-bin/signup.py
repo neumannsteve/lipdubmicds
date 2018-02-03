@@ -1,10 +1,11 @@
 #!/usr/local/bin/python
 
 import os
+import sys
 import cgi, cgitb
-import tempfile
 import psycopg2
 import subprocess
+import smtplib
 from subprocess import PIPE, Popen
 
 # Dump errors to browser
@@ -55,12 +56,28 @@ with conn:
             if phase_id is not None:
                 cursor.execute("INSERT INTO xrefSignupsPhases (signup_id, phase_id, created) VALUES (%s,%s,now())", (signup_id, phase_id))
 
+# Send email
+try:
+    from_addr = '"Lip Dub MICDS Website" <www@libdubmicds.org>'
+    to_addr = '"Sebastian Neumann" <sneumann@micds.org>, "Arina Lanis" <arina@neumannfamily.net>, "Steve Neumann" <steve@neumannfamily.net>'
+    message = ''
+    message += "From: {0}\n".format(from_addr)
+    message += "To: {0}\n".format(to_addr)
+    message += 'Subject: Lip Dub Signup\n\n'
+    for field in ['name', 'email', 'phone', 'class', 'assistant', 'comments']:
+        message += "{0}: {1}\n".format(field.capitalize(), info[field])
+    s = smtplib.SMTP('localhost')
+    s.sendmail(from_addr, to_addr.split(','), message)
+    s.quit()
+except:
+    with open('errors.dat', 'a') as error_file:
+        error_file.write('{0}\n'.format(sys.exc_info()[0]))
+
 # Generate output
 BASEDIR = '/usr/www/hosted/lipdubmicds'
 SUBDIR = 'signup'
 INPDIR = 'staging'
 TEMPLATE = 'signup-template.html'
-TMPNAME = next(tempfile._get_candidate_names()) + '.html'
 
 vars = []
 vars.append('name=' + info['name'])
