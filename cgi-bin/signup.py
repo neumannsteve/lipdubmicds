@@ -59,7 +59,7 @@ with conn:
 # Send email
 try:
     from_addr = '"Lip Dub MICDS Website" <www@libdubmicds.org>'
-    to_addr = '"Sebastian Neumann" <sneumann@micds.org>, "Arina Lanis" <arina@neumannfamily.net>, "Steve Neumann" <steve@neumannfamily.net>'
+    to_addr = '"Sebastian Neumann" <sebastian@neumannfamily.net>'
     message = ''
     message += "From: {0}\n".format(from_addr)
     message += "To: {0}\n".format(to_addr)
