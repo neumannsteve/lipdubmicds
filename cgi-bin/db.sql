@@ -5,9 +5,9 @@ CREATE TABLE tblSignups (
         phone           text,
         class           text,
         comments        text,
+        role            text,
         created         timestamptz,
-        do_not_email    boolean not null default false,
-        assistant_director boolean not null default false
+        do_not_email    boolean not null default false
 );
 
 CREATE TABLE tblPhases (

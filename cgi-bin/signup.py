@@ -17,9 +17,8 @@ form = cgi.FieldStorage()
 # Get data from fields
 phase = form.getvalue('phase')
 info = {}
-for field in ['name', 'email', 'phone', 'class', 'comments']:
+for field in ['name', 'email', 'phone', 'class', 'comments', 'role']:
     info[field] = form.getvalue(field)
-info['assistant'] = True if form.getvalue('assistant', '') != '' else False
 
 # Write data to file (just in case)
 with open('signups.dat', 'a') as signups_file:
@@ -46,8 +45,8 @@ with conn:
         if row is not None:
             phase_id = row[0]
 
-        cursor.execute("INSERT INTO tblSignups (name,email,phone,class,comments,assistant_director,created) VALUES (%s,%s,%s,%s,%s,%s,now()) RETURNING id",
-            (info['name'], info['email'], info['phone'], info['class'], info['comments'], 'true' if info['assistant'] else 'false'))
+        cursor.execute("INSERT INTO tblSignups (name,email,phone,class,role,comments,created) VALUES (%s,%s,%s,%s,%s,%s,now()) RETURNING id",
+            (info['name'], info['email'], info['phone'], info['class'], info['role'], info['comments']))
         new_row = cursor.fetchone()
         if new_row is None:
             error = "Unable to save record to database"
@@ -64,7 +63,7 @@ try:
     message += "From: {0}\n".format(from_addr)
     message += "To: {0}\n".format(to_addr)
     message += 'Subject: Lip Dub Signup\n\n'
-    for field in ['name', 'email', 'phone', 'class', 'assistant', 'comments']:
+    for field in ['name', 'email', 'phone', 'class', 'role', 'comments']:
         message += "{0}: {1}\n".format(field.capitalize(), info[field])
     s = smtplib.SMTP('localhost')
     s.sendmail(from_addr, to_addr.split(','), message)
