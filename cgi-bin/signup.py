@@ -18,10 +18,11 @@ form = cgi.FieldStorage()
 phase = form.getvalue('phase')
 info = {}
 for field in ['name', 'email', 'phone', 'class', 'comments', 'role']:
-    info[field] = form.getvalue(field)
+    info[field] = form.getvalue(field, '')
 
 # Write data to file (just in case)
 with open('signups.dat', 'a') as signups_file:
+    signups_file.write('{0}: '.format(phase))
     signups_file.write('{}\n'.format(info))
 
 # Connect to database
@@ -62,9 +63,11 @@ try:
     message = ''
     message += "From: {0}\n".format(from_addr)
     message += "To: {0}\n".format(to_addr)
-    message += 'Subject: Lip Dub Signup\n\n'
+    message += 'Subject: Lip Dub {0} Signup\n\n'.format(phase.capitalize())
+    message += '** {0} SIGN-UP **\n\n'.format(phase.upper())
     for field in ['name', 'email', 'phone', 'class', 'role', 'comments']:
-        message += "{0}: {1}\n".format(field.capitalize(), info[field])
+        if info[field] is not None:
+            message += "{0}: {1}\n".format(field.capitalize(), info[field])
     s = smtplib.SMTP('localhost')
     s.sendmail(from_addr, to_addr.split(','), message)
     s.quit()
