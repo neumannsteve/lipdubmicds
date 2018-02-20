@@ -21,6 +21,7 @@ phase = form.getvalue('phase')
 info = {}
 for field in ['name', 'email', 'phone', 'class', 'comments', 'role']:
     info[field] = form.getvalue(field, '')
+if phase == 'performer': info['role'] = 'performer'
 
 # Write data to file (just in case)
 with open('signups.dat', 'a') as signups_file:
