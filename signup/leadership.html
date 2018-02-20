@@ -19,7 +19,7 @@ to administration, and handle the overall details of the lip dub.</p>
 dub, handling logistics and other matters in the context of that section such
 as choosing performers, choosing songs, handling decorations, and so forth.</p>
 
-<form action="/cgi-bin/signup.py" method="post">
+<form action="/cgi-bin/signup.py" method="post" id="main-form">
   <input type="hidden" name="phase" value="leadership">
   <ul>
   <li>
@@ -55,7 +55,9 @@ as choosing performers, choosing songs, handling decorations, and so forth.</p>
     <textarea name="comments" id="comments" rows="5" cols="80"></textarea>
   </li>
   </ul>
-  <div style="display: block; width: 200px; margin: 1em auto"><input type="submit" name="submit" value=" Sign Up! "></div> 
+  <div style="display: block; width: 200px; margin: 1em auto">
+    <button class="g-recaptcha" data-sitekey="6LcLYUcUAAAAAA_AcJuie67K9tVtLjwiEyq09Pa_" data-callback="onSubmit"> Sign Up! </button>
+  </div>
 </form>
 
 </div>
